@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dhulasiram R — Portfolio</title>
+  <meta name="description" content="Animated, professional portfolio showcasing projects, skills, and contact links for Dhulasiram R." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b1020;
+      --surface: #0f1730;
+      --elev: #131c3a;
+      --text: #e7ecff;
+      --muted: #a7b0d4;
+      --brand: #7c8cff;
+      --brand-2: #21d4fd;
+      --accent: #b721ff;
+      --ok: #56f2c3;
+      --warn: #ffd166;
+      --danger: #ff6b6b;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius-xl: 22px;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji';
+      color:var(--text); background: radial-gradient(1200px 800px at 80% -10%, rgba(124,140,255,.15), transparent 60%), linear-gradient(180deg, #090d1a, #0b1020 30%);
+      overflow-x:hidden;
+    }
+    a{color:inherit; text-decoration:none}
+    .container{width:min(1120px, 92%); margin-inline:auto}
+
+    /* ---------- NAV ---------- */
+    nav{
+      position: sticky; top:0; z-index:10; backdrop-filter: saturate(180%) blur(10px);
+      background: linear-gradient(180deg, rgba(11,16,32,0.85), rgba(11,16,32,0.35));
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav-wrap{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+    .brand{display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.3px}
+    .badge{font-size:12px; padding:6px 10px; border-radius:999px; background:linear-gradient(135deg, var(--brand-2), var(--accent)); color:#06121a; font-weight:700}
+    .nav-links{display:flex; gap:18px}
+    .nav-links a{padding:10px 14px; border-radius:10px; color:var(--muted); font-weight:600}
+    .nav-links a:hover{background:rgba(255,255,255,.06); color:var(--text)}
+    .theme-toggle{border:1px solid rgba(255,255,255,.12); background:transparent; color:var(--text); padding:8px 12px; border-radius:12px; cursor:pointer}
+
+    /* ---------- HERO ---------- */
+    .hero{position:relative; padding:78px 0 36px}
+    .hero-grid{display:grid; grid-template-columns: 1.2fr .8fr; gap:28px; align-items:center}
+    .title{font-family:Poppins, Inter, sans-serif; font-weight:800; font-size:clamp(32px, 6vw, 54px); line-height:1.05; letter-spacing:.2px}
+    .grad{background:linear-gradient(90deg, var(--brand-2), var(--accent)); -webkit-background-clip:text; background-clip:text; color:transparent}
+    .subtitle{color:var(--muted); font-size:clamp(16px, 2.4vw, 19px); max-width:62ch}
+    .cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:26px}
+    .btn{display:inline-flex; align-items:center; gap:10px; padding:12px 16px; border-radius:14px; font-weight:700; border:1px solid rgba(255,255,255,.12); transition:transform .2s ease, background .2s ease}
+    .btn svg{width:18px; height:18px}
+    .btn.primary{background:linear-gradient(135deg, var(--brand-2), var(--accent)); color:#06121a; border:none}
+    .btn:hover{transform:translateY(-2px)}
+    .hero-card{background:linear-gradient(180deg, rgba(124,140,255,.15), rgba(124,140,255,.05)); border:1px solid rgba(124,140,255,.25); border-radius:var(--radius-xl); padding:18px; box-shadow:var(--shadow)}
+    .hero-card .stat{display:grid; grid-template-columns: 1fr 1fr; gap:14px; margin-top:14px}
+    .pill{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:999px; color:var(--muted); font-weight:700}
+
+    /* ---------- SECTION WRAPPER ---------- */
+    section{padding:56px 0}
+    .section-title{font-size:24px; font-weight:800; margin:0 0 14px}
+    .section-sub{color:var(--muted); margin:0 0 22px}
+
+    /* ---------- ABOUT ---------- */
+    .about{display:grid; grid-template-columns: 1.2fr .8fr; gap:22px}
+    .card{background:var(--surface); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius-lg); padding:22px; box-shadow:var(--shadow)}
+
+    /* ---------- TIMELINE ---------- */
+    .timeline{position:relative; margin-top:6px}
+    .timeline:before{content:""; position:absolute; left:18px; top:0; bottom:0; width:2px; background:linear-gradient(180deg, rgba(124,140,255,.6), transparent)}
+    .t-item{position:relative; padding-left:46px; margin:18px 0}
+    .t-item:before{content:""; position:absolute; left:10px; top:6px; width:18px; height:18px; border-radius:50%; background:linear-gradient(135deg, var(--brand-2), var(--accent)); box-shadow:0 0 0 4px rgba(124,140,255,.15)}
+    .t-role{font-weight:800}
+    .t-meta{color:var(--muted); font-size:14px}
+
+    /* ---------- PROJECTS ---------- */
+    .grid{display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:18px}
+    .project{
+      background: radial-gradient(400px 200px at 100% 0%, rgba(124,140,255,.18), transparent), var(--surface);
+      border:1px solid rgba(255,255,255,.08); border-radius:var(--radius-lg); padding:20px; box-shadow:var(--shadow); position:relative; overflow:hidden
+    }
+    .project h3{margin:0 0 8px}
+    .project p{color:var(--muted)}
+    .tagbar{display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 0}
+    .tag{font-size:12px; padding:6px 10px; border-radius:999px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); color:var(--muted); font-weight:700}
+
+    /* ---------- SKILLS ---------- */
+    .skills{display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:18px}
+    .skill-list{display:flex; flex-wrap:wrap; gap:10px}
+    .chip{padding:8px 12px; border-radius:999px; background:linear-gradient(180deg, rgba(124,140,255,.15), rgba(124,140,255,.05)); border:1px solid rgba(124,140,255,.25); font-weight:700}
+
+    /* ---------- CONTACT ---------- */
+    .contact-card{display:grid; grid-template-columns: 1.1fr .9fr; gap:18px}
+    form{display:grid; gap:12px}
+    input, textarea{width:100%; padding:12px 14px; border-radius:14px; border:1px solid rgba(255,255,255,.14); background:#0c1329; color:var(--text)}
+    textarea{min-height:120px; resize:vertical}
+
+    /* ---------- FOOTER ---------- */
+    footer{padding:28px 0 48px; color:var(--muted); text-align:center}
+
+    /* ---------- ANIMATIONS ---------- */
+    .floaty{
+      position:absolute; inset:auto auto 10% -6%; width:340px; height:340px; border-radius:50%;
+      filter: blur(40px); opacity:.25; background: conic-gradient(from 180deg at 50% 50%, var(--brand-2), var(--accent), var(--brand-2));
+      animation: spin 18s linear infinite;
+    }
+    @keyframes spin{to{transform:rotate(1turn)}}
+    .reveal{opacity:0; transform: translateY(14px) scale(.98); transition: all .6s cubic-bezier(.2,.7,.2,1)}
+    .reveal.visible{opacity:1; transform:none}
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 920px){
+      .hero-grid, .about, .contact-card{grid-template-columns: 1fr}
+      .nav-links{display:none}
+      .hero{padding-top:40px}
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container nav-wrap">
+      <div class="brand">
+        <span style="display:inline-grid;place-items:center;width:36px;height:36px;border-radius:12px;background:linear-gradient(135deg,var(--brand-2),var(--accent));color:#06121a;font-weight:900">DR</span>
+        <span>Dhulasiram&nbsp;R</span>
+        <span class="badge">AI & Data Science</span>
+      </div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button class="theme-toggle" id="themeToggle" title="Toggle theme">Toggle Theme</button>
+    </div>
+  </nav>
+
+  <header class="hero container">
+    <div class="floaty" aria-hidden="true"></div>
+    <div class="hero-grid">
+      <div>
+        <h1 class="title">Hi, I'm <span class="grad">Dhulasiram R</span> —
+          a flexible, optimistic developer eager to build <span class="grad">useful, human-centered</span> AI products.</h1>
+        <p class="subtitle">I love shipping projects end‑to‑end: from collecting data and writing clean code to deploying polished web apps. I'm looking for opportunities where I can learn fast, embrace challenges, and contribute to meaningful work.</p>
+        <div class="cta">
+          <a class="btn primary" href="mailto:dhulasiram07@gmail.com?subject=Hello%20Dhulasiram&body=Hi%20Dhulasiram,%20I%20saw%20your%20portfolio..." target="_blank" rel="noopener">
+            <!-- mail icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="M22 6l-10 7L2 6"/></svg>
+            Email Me
+          </a>
+          <a class="btn" href="https://github.com/Dhulasi2005" target="_blank" rel="noopener">
+            <!-- github icon -->
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.1.82-.25.82-.57v-2.02c-3.34.73-4.04-1.61-4.04-1.61-.55-1.4-1.34-1.77-1.34-1.77-1.1-.76.08-.74.08-.74 1.22.08 1.86 1.25 1.86 1.25 1.08 1.86 2.83 1.32 3.52 1.01.11-.79.42-1.32.76-1.63-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.67 1.65.25 2.87.13 3.17.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.47 5.93.43.37.81 1.1.81 2.23v3.31c0 .32.22.68.83.57A12 12 0 0 0 12 .5Z"/></svg>
+            GitHub
+          </a>
+          <a class="btn" href="#projects">
+            <!-- rocket icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15a7 7 0 0 0 4 4l4-4 3-8-8 3-4 4Z"/><path d="M15 9l-6 6"/><path d="M5 15H3l2-2v2Z"/><path d="M19 5l-4 4"/></svg>
+            View Projects
+          </a>
+          <a class="btn" href="resume.pdf" download>
+            <!-- file icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg>
+            Download Resume
+          </a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="pill">Based in Coimbatore, India</div>
+        <div class="stat">
+          <div class="card">
+            <div class="t-role">B.Tech — AI & Data Science</div>
+            <div class="t-meta">Graduating May 2026</div>
+          </div>
+          <div class="card">
+            <div class="t-role">Competitive Badminton</div>
+            <div class="t-meta">Daily practice and tournaments</div>
+          </div>
+        </div>
+        <div class="stat">
+          <div class="card">
+            <div class="t-role">Languages</div>
+            <div class="t-meta">English, Tamil</div>
+          </div>
+          <a class="card" href="#contact" style="text-decoration:none">
+            <div class="t-role">Let's collaborate</div>
+            <div class="t-meta">Open to internships & projects</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="about" class="container">
+      <h2 class="section-title">About</h2>
+      <p class="section-sub">I enjoy turning ideas into working products with clean code, crisp UI, and measurable impact.</p>
+      <div class="about">
+        <article class="card reveal">
+          <h3>Summary</h3>
+          <p>A flexible and optimistic individual seeking an opportunity to start my career in a reputed organization, where I can apply my skills, embrace challenges, and grow into a confident and capable professional, contributing meaningfully to a better future.</p>
+        </article>
+        <aside class="card reveal">
+          <h3>Quick Links</h3>
+          <p><strong>Email:</strong> <a href="mailto:dhulasiram07@gmail.com">dhulasiram07@gmail.com</a></p>
+          <p><strong>GitHub:</strong> <a href="https://github.com/Dhulasi2005" target="_blank" rel="noopener">github.com/Dhulasi2005</a></p>
+          <p><strong>Phone:</strong> <a href="tel:+916369675679">+91&nbsp;63696&nbsp;75679</a></p>
+          <p><strong>Location:</strong> Coimbatore, India</p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="education" class="container">
+      <h2 class="section-title">Education</h2>
+      <p class="section-sub">Formal learning that shaped my fundamentals.</p>
+      <div class="timeline">
+        <div class="t-item reveal">
+          <div class="t-role">B.Tech in Artificial Intelligence & Data Science — CGPA 6.86</div>
+          <div class="t-meta">Coimbatore Institute of Engineering and Technology · Coimbatore · May 2026</div>
+        </div>
+        <div class="t-item reveal">
+          <div class="t-role">HSC — 61.3%</div>
+          <div class="t-meta">CSI Boys Higher Secondary School · Erode · 2022</div>
+        </div>
+        <div class="t-item reveal">
+          <div class="t-role">SSLC — 60%</div>
+          <div class="t-meta">Sri Saraswathi Vidhyalaya Matric Hr Sec School · Erode · 2020</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="container">
+      <h2 class="section-title">Projects</h2>
+      <p class="section-sub">A few things I've built and shipped.</p>
+      <div class="grid">
+        <article class="project reveal">
+          <h3>Autonomous Drone Delivery System</h3>
+          <p>Autonomous drone for package delivery with real‑time tracking and camera feed, integrated with a web-based control system.</p>
+          <div class="tagbar">
+            <span class="tag">Raspberry Pi</span>
+            <span class="tag">Computer Vision</span>
+            <span class="tag">Web App</span>
+          </div>
+          <p style="margin-top:10px"><a href="https://delivery-drone-2f5.web.app" target="_blank" rel="noopener">Live demo ↗</a></p>
+        </article>
+        <article class="project reveal">
+          <h3>Financial‑AI</h3>
+          <p>Global financial news analyzer that measures market sentiment and provides investment suggestions through a clean dashboard.</p>
+          <div class="tagbar">
+            <span class="tag">NLP</span>
+            <span class="tag">Flask / Python</span>
+            <span class="tag">Deployment</span>
+          </div>
+          <p style="margin-top:10px"><a href="https://financialai.up.railway.app/" target="_blank" rel="noopener">Live demo ↗</a></p>
+        </article>
+        <article class="project reveal">
+          <h3>Anemia Detection System</h3>
+          <p>AI‑powered anemia prediction from eye images using a Flask backend; includes Android (React Native) client for mobile screening.</p>
+          <div class="tagbar">
+            <span class="tag">Computer Vision</span>
+            <span class="tag">Flask</span>
+            <span class="tag">Android</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills" class="container">
+      <h2 class="section-title">Skills</h2>
+      <p class="section-sub">Technical and interpersonal strengths I bring to teams.</p>
+      <div class="skills">
+        <article class="card reveal">
+          <h3>Technical</h3>
+          <div class="skill-list">
+            <span class="chip">HTML</span>
+            <span class="chip">CSS</span>
+            <span class="chip">JavaScript</span>
+            <span class="chip">Python</span>
+            <span class="chip">Java</span>
+          </div>
+        </article>
+        <article class="card reveal">
+          <h3>Soft Skills</h3>
+          <div class="skill-list">
+            <span class="chip">Teamwork</span>
+            <span class="chip">Adaptability</span>
+            <span class="chip">Time Management</span>
+            <span class="chip">Ownership</span>
+            <span class="chip">Communication</span>
+          </div>
+        </article>
+        <article class="card reveal">
+          <h3>Extras</h3>
+          <ul>
+            <li>National Autonomous Drone Development Challenges (ADDC‑2025) — Participation, Chennai</li>
+            <li>Interests: Professional Badminton Athlete</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="container">
+      <h2 class="section-title">Contact</h2>
+      <p class="section-sub">Reach out for internships, collaborations, or freelance help.</p>
+      <div class="contact-card">
+        <div class="card reveal">
+          <h3>Message me</h3>
+          <form id="contactForm">
+            <input type="text" id="name" placeholder="Your name" required>
+            <input type="email" id="email" placeholder="Your email" required>
+            <input type="text" id="subject" placeholder="Subject" required>
+            <textarea id="message" placeholder="Your message" required></textarea>
+            <button class="btn primary" type="submit">Send via Email</button>
+          </form>
+          <p style="color:var(--muted); font-size:14px; margin-top:10px">This sends using your default mail app via <code>mailto:</code>. For a backend form, connect to your server or a service like Formspree.</p>
+        </div>
+        <aside class="card reveal">
+          <h3>Direct</h3>
+          <p><strong>Email:</strong> <a href="mailto:dhulasiram07@gmail.com">dhulasiram07@gmail.com</a></p>
+          <p><strong>Phone:</strong> <a href="tel:+916369675679">+91&nbsp;63696&nbsp;75679</a></p>
+          <p><strong>GitHub:</strong> <a href="https://github.com/Dhulasi2005" target="_blank" rel="noopener">@Dhulasi2005</a></p>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © <span id="year"></span> Dhulasiram R • Built with ❤ and vanilla HTML/CSS/JS • <a href="#top">Back to top</a>
+    </div>
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Theme toggle (simple light/dark demo)
+    const toggle = document.getElementById('themeToggle');
+    let dark = true;
+    toggle.addEventListener('click', () => {
+      dark = !dark;
+      document.documentElement.style.setProperty('--bg', dark ? '#0b1020' : '#f5f7ff');
+      document.documentElement.style.setProperty('--surface', dark ? '#0f1730' : '#ffffff');
+      document.documentElement.style.setProperty('--elev', dark ? '#131c3a' : '#eef1ff');
+      document.documentElement.style.setProperty('--text', dark ? '#e7ecff' : '#0a1025');
+      document.documentElement.style.setProperty('--muted', dark ? '#a7b0d4' : '#52607a');
+      document.body.style.background = dark ?
+        'radial-gradient(1200px 800px at 80% -10%, rgba(124,140,255,.15), transparent 60%), linear-gradient(180deg, #090d1a, #0b1020 30%)'
+        : 'radial-gradient(800px 600px at 10% -10%, rgba(124,140,255,.18), transparent 60%), linear-gradient(180deg, #f7f9ff, #eff3ff 30%)';
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {threshold: .15});
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Contact form -> mailto
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = encodeURIComponent(document.getElementById('name').value.trim());
+      const email = encodeURIComponent(document.getElementById('email').value.trim());
+      const subject = encodeURIComponent(document.getElementById('subject').value.trim());
+      const message = encodeURIComponent(document.getElementById('message').value.trim());
+      const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0A${message}`;
+      window.location.href = `mailto:dhulasiram07@gmail.com?subject=${subject}&body=${body}`;
+    });
+  </script>
+</body>
+</html>
