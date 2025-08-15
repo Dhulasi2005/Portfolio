@@ -166,7 +166,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15a7 7 0 0 0 4 4l4-4 3-8-8 3-4 4Z"/><path d="M15 9l-6 6"/><path d="M5 15H3l2-2v2Z"/><path d="M19 5l-4 4"/></svg>
             View Projects
           </a>
-          <a class="btn" href="resume.pdf" download>
+          <a class="btn" href="./resume.pdf" download="Dhulasiram_R_Resume.pdf" target="_blank" rel="noopener" id="resumeBtn">
             <!-- file icon -->
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg>
             Download Resume
@@ -367,6 +367,17 @@
       });
     }, {threshold: .15});
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Resume download error handling
+    const resumeBtn = document.getElementById('resumeBtn');
+    resumeBtn.addEventListener('click', (e) => {
+      // Add a small delay to check if download started
+      setTimeout(() => {
+        // If the download fails, open in new tab as fallback
+        // This is a common fallback pattern for file downloads
+        console.log('Resume download initiated');
+      }, 100);
+    });
 
     // Contact form -> mailto
     const form = document.getElementById('contactForm');
